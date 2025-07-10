@@ -1,0 +1,40 @@
+{
+  "name": "nodejs-hw-mongodb",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "start": "node ./src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlehDee/nodejs-hw-mongodb.git"
+  },
+  "keywords": [],
+  "author": "Oleh Denysenko <Oleh.denysenkoo@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlehDee/nodejs-hw-mongodb/issues"
+  },
+  "homepage": "https://github.com/OlehDee/nodejs-hw-mongodb#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.2",
+    "pino-http": "^10.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
+    "typescript-eslint": "^8.36.0"
+  }
+}
