@@ -22,7 +22,10 @@
   "homepage": "https://github.com/OlehDee/nodejs-hw-mongodb#readme",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "http-errors": "^2.0.0",

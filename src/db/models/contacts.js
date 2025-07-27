@@ -30,6 +30,11 @@ const contactsSchema = new Schema(
       required: true,
       enum: contactTypesList,
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
   },
   {
     timestamps: true,
