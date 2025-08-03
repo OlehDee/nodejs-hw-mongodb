@@ -30,6 +30,9 @@ const contactsSchema = new Schema(
       required: true,
       enum: contactTypesList,
     },
+    photo: {
+      type: String,
+    },
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'users',
