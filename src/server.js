@@ -17,6 +17,15 @@ export function setupServer() {
   app.use(cookieParser());
 
   app.use('/auth', authRouter);
+  app.get('/reset-password', (req, res) => {
+    res.status(405).json({
+      status: 405,
+      message: 'Method Not Allowed',
+      data: {
+        message: 'Use POST request to /auth/reset-pwd',
+      },
+    });
+  });
   app.use('/contacts', contactsRouter);
 
   app.use(notFoundHandler);

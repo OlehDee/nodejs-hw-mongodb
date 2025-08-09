@@ -10,6 +10,7 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { sortByList } from '../db/models/contacts.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseContactFilterParams } from '../utils/parseContactFilterParams.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const getContactsController = async (req, res, next) => {
   const { page, perPage } = parsePaginationParams(req.query);
@@ -48,7 +49,16 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 export const createContactController = async (req, res) => {
-  const contact = await createContact({ ...req.body, userId: req.user._id });
+  const photo = req.file;
+  let photoUrl;
+  if (photo) {
+    photoUrl = await saveFileToCloudinary(photo);
+  }
+  const contact = await createContact({
+    ...req.body,
+    photo: photoUrl,
+    userId: req.user._id,
+  });
   res.status(201).json({
     status: 201,
     message: 'Successfully created contact!',
@@ -58,9 +68,17 @@ export const createContactController = async (req, res) => {
 
 export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
+  const photo = req.file;
+  let photoUrl;
+  if (photo) {
+    photoUrl = await saveFileToCloudinary(photo);
+  }
   const result = await updateContact(
     { _id: contactId, userId: req.user._id },
-    req.body,
+    {
+      ...req.body,
+      photo: photoUrl,
+    },
   );
   if (!result) {
     next(createHttpError(404, `Contact with id ${contactId} was not found`));
@@ -75,9 +93,17 @@ export const patchContactController = async (req, res, next) => {
 
 export const upsertContactController = async (req, res, next) => {
   const { contactId } = req.params;
+  const photo = req.file;
+  let photoUrl;
+  if (photo) {
+    photoUrl = await saveFileToCloudinary(photo);
+  }
   const result = await updateContact(
     { _id: contactId, userId: req.user._id },
-    req.body,
+    {
+      ...req.body,
+      photo: photoUrl,
+    },
     { upsert: true },
   );
   if (!result) {
