@@ -1,0 +1,48 @@
+tags:
+  - Auth
+summary: Reset password
+operationId: resetPassword
+description: 'Reset password using token from email'
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - password
+          - token
+        properties:
+          password:
+            description: 'New password'
+            type: string
+            example: 'Str0ngPas5w0rd'
+          token:
+            description: 'Token received via email'
+            type: string
+            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzMzNTZhZjU4MWI4NmQ5ZWZiZWVmMGQiLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJpYXQiOjE3MzI3NzM2MDAsImV4cCI6MTczMjc3NDUwMH0.NTEjOhjc81oO6Pc1ABhAYVAsTeYdFN777kyNhL8ndDU'
+responses:
+  '200':
+    description: 'Password was successfully reset'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Password was successfully reset!'
+            data:
+              type: object
+              properties: {}
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404UserNotFound.yaml'
