@@ -7,7 +7,10 @@
     "lint": "eslint src/**/*.js",
     "start": "node ./src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-docs",
+    "build-docs": "redocly bundle docs/openapi.yaml --ext json -o docs/swagger.json",
+    "preview-docs": "redocly preview-docs"
   },
   "repository": {
     "type": "git",
@@ -37,10 +40,12 @@
     "mongoose": "^8.16.2",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.5",
-    "pino-http": "^10.5.0"
+    "pino-http": "^10.5.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@redocly/cli": "^2.0.4",
     "eslint": "^9.30.1",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
